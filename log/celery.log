@@ -1,0 +1,325 @@
+<<<<<<< HEAD
+[2017-11-05 21:46:02,573: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 21:46:02,600: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 21:46:03,629: INFO/MainProcess] mingle: all alone
+[2017-11-05 21:46:03,667: WARNING/MainProcess] celery@ff0663c5d931 ready.
+[2017-11-05 21:56:23,372: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 21:56:23,412: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 21:56:24,449: INFO/MainProcess] mingle: all alone
+[2017-11-05 21:56:24,476: WARNING/MainProcess] celery@2371bc2b58f8 ready.
+[2017-11-05 21:57:38,720: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 21:57:38,765: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 21:57:39,805: INFO/MainProcess] mingle: all alone
+[2017-11-05 21:57:39,838: WARNING/MainProcess] celery@b6141c1c3fa7 ready.
+[2017-11-05 21:59:03,575: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 21:59:03,617: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 21:59:04,641: INFO/MainProcess] mingle: all alone
+[2017-11-05 21:59:04,665: WARNING/MainProcess] celery@4ae457144dad ready.
+[2017-11-05 22:01:30,683: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 22:01:30,728: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 22:01:31,753: INFO/MainProcess] mingle: all alone
+[2017-11-05 22:01:31,782: WARNING/MainProcess] celery@c260d7a374ee ready.
+[2017-11-05 22:04:06,293: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 22:04:06,327: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 22:04:07,361: INFO/MainProcess] mingle: all alone
+[2017-11-05 22:04:07,405: WARNING/MainProcess] celery@fc05846fc3bc ready.
+[2017-11-05 22:10:49,669: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 22:10:49,712: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 22:10:50,735: INFO/MainProcess] mingle: all alone
+[2017-11-05 22:10:50,779: WARNING/MainProcess] celery@895d81b79c1a ready.
+[2017-11-05 22:16:44,847: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 22:16:44,874: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 22:16:45,913: INFO/MainProcess] mingle: all alone
+[2017-11-05 22:16:45,939: WARNING/MainProcess] celery@9d7a3d5a08ec ready.
+=======
+[2017-09-28 22:44:37,630: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-09-28 22:44:37,671: INFO/MainProcess] mingle: searching for neighbors
+[2017-09-28 22:44:38,696: INFO/MainProcess] mingle: all alone
+[2017-09-28 22:44:38,727: WARNING/MainProcess] celery@bc4de06c3b36 ready.
+[2017-09-30 20:48:40,588: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 279, in start
+    blueprint.start(self)
+  File "/env/local/lib/python2.7/site-packages/celery/bootsteps.py", line 123, in start
+    step.start(parent)
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 838, in start
+    c.loop(*c.loop_args())
+  File "/env/local/lib/python2.7/site-packages/celery/worker/loops.py", line 76, in asynloop
+    next(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/async/hub.py", line 340, in create_loop
+    cb(*cbargs)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/base.py", line 164, in on_readable
+    reader(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/base.py", line 146, in _read
+    drain_events(timeout=0)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 324, in drain_events
+    return amqp_method(channel, args)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 530, in _close
+    (class_id, method_id), ConnectionError)
+ConnectionForced: (0, 0): (320) CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'
+[2017-09-30 20:48:40,652: ERROR/MainProcess] consumer: Cannot connect to amqp://quser:**@cybercom_rabbitmq:5671/vhost: [Errno 111] Connection refused.
+Trying again in 2.00 seconds...
+
+[2017-10-05 05:17:47,470: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-05 05:17:47,514: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-05 05:17:48,529: INFO/MainProcess] mingle: all alone
+[2017-10-05 05:17:48,569: WARNING/MainProcess] celery@7fdeafa69437 ready.
+[2017-10-07 01:14:07,412: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 279, in start
+    blueprint.start(self)
+  File "/env/local/lib/python2.7/site-packages/celery/bootsteps.py", line 123, in start
+    step.start(parent)
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 838, in start
+    c.loop(*c.loop_args())
+  File "/env/local/lib/python2.7/site-packages/celery/worker/loops.py", line 76, in asynloop
+    next(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/async/hub.py", line 340, in create_loop
+    cb(*cbargs)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/base.py", line 164, in on_readable
+    reader(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/base.py", line 146, in _read
+    drain_events(timeout=0)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 324, in drain_events
+    return amqp_method(channel, args)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 530, in _close
+    (class_id, method_id), ConnectionError)
+ConnectionForced: (0, 0): (320) CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'
+[2017-10-07 01:14:07,525: ERROR/MainProcess] consumer: Cannot connect to amqp://quser:**@cybercom_rabbitmq:5671/vhost: [Errno 111] Connection refused.
+Trying again in 2.00 seconds...
+
+[2017-10-13 17:51:41,103: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 17:51:41,158: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 17:51:42,199: INFO/MainProcess] mingle: all alone
+[2017-10-13 17:51:42,238: WARNING/MainProcess] celery@809a5912d587 ready.
+[2017-10-13 17:54:01,456: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 17:54:01,486: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 17:54:02,527: INFO/MainProcess] mingle: all alone
+[2017-10-13 17:54:02,552: WARNING/MainProcess] celery@5ad6abdeedc2 ready.
+[2017-10-13 17:54:37,519: INFO/MainProcess] Received task: cybercomq.tasks.tasks.add[0cab27b9-3013-469d-a8ce-95ad5b663fe7]
+[2017-10-13 17:54:37,637: INFO/MainProcess] Task cybercomq.tasks.tasks.add[0cab27b9-3013-469d-a8ce-95ad5b663fe7] succeeded in 0.113617769006s: 3
+[2017-10-13 17:55:00,996: INFO/MainProcess] Received task: cybercomq.tasks.tasks.add[e59d11a4-02f3-4a61-8ad2-cd584eda8d0e]
+[2017-10-13 17:55:01,115: INFO/MainProcess] Task cybercomq.tasks.tasks.add[e59d11a4-02f3-4a61-8ad2-cd584eda8d0e] succeeded in 0.114595543011s: 12
+[2017-10-13 23:14:47,957: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 23:14:47,984: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 23:14:49,005: INFO/MainProcess] mingle: all alone
+[2017-10-13 23:14:49,037: WARNING/MainProcess] celery@8606e9e8fb7b ready.
+[2017-10-13 23:18:20,906: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 23:18:20,940: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 23:18:21,962: INFO/MainProcess] mingle: all alone
+[2017-10-13 23:18:21,998: WARNING/MainProcess] celery@dc788131c75d ready.
+[2017-10-13 23:19:23,456: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 23:19:23,488: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 23:19:24,522: INFO/MainProcess] mingle: all alone
+[2017-10-13 23:19:24,552: WARNING/MainProcess] celery@27c431c097b4 ready.
+[2017-10-13 23:21:03,116: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 23:21:03,153: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 23:21:04,186: INFO/MainProcess] mingle: all alone
+[2017-10-13 23:21:04,218: WARNING/MainProcess] celery@d83c9b5bf0ea ready.
+[2017-10-13 23:26:46,823: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-13 23:26:46,857: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-13 23:26:47,879: INFO/MainProcess] mingle: all alone
+[2017-10-13 23:26:47,910: WARNING/MainProcess] celery@23907cbef2c5 ready.
+[2017-10-14 00:17:58,645: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-14 00:17:58,676: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-14 00:17:59,697: INFO/MainProcess] mingle: all alone
+[2017-10-14 00:17:59,736: WARNING/MainProcess] celery@c7c5e183d243 ready.
+[2017-10-14 00:31:06,119: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-14 00:31:06,154: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-14 00:31:07,185: INFO/MainProcess] mingle: all alone
+[2017-10-14 00:31:07,221: WARNING/MainProcess] celery@67be1f6385eb ready.
+[2017-10-14 00:34:09,775: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-14 00:34:09,813: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-14 00:34:10,844: INFO/MainProcess] mingle: all alone
+[2017-10-14 00:34:10,877: WARNING/MainProcess] celery@471da8d469c2 ready.
+[2017-10-14 00:42:06,002: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-14 00:42:06,029: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-14 00:42:07,059: INFO/MainProcess] mingle: all alone
+[2017-10-14 00:42:07,100: WARNING/MainProcess] celery@87c1dc909171 ready.
+[2017-10-15 03:17:51,704: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-15 03:17:51,735: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-15 03:17:52,761: INFO/MainProcess] mingle: all alone
+[2017-10-15 03:17:52,788: WARNING/MainProcess] celery@1776349d52e1 ready.
+[2017-10-15 03:23:40,967: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-15 03:23:41,024: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-15 03:23:42,046: INFO/MainProcess] mingle: all alone
+[2017-10-15 03:23:42,094: WARNING/MainProcess] celery@bed50afe1023 ready.
+[2017-10-16 19:23:00,454: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-16 19:23:00,502: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-16 19:23:01,518: INFO/MainProcess] mingle: all alone
+[2017-10-16 19:23:01,557: WARNING/MainProcess] celery@b6f7d9d306e8 ready.
+[2017-10-16 22:49:21,251: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-16 22:49:21,392: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-16 22:49:22,437: INFO/MainProcess] mingle: all alone
+[2017-10-16 22:49:22,473: WARNING/MainProcess] celery@457c8727b978 ready.
+[2017-10-16 23:10:27,044: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-16 23:10:27,076: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-16 23:10:28,113: INFO/MainProcess] mingle: all alone
+[2017-10-16 23:10:28,141: WARNING/MainProcess] celery@1ce90b820861 ready.
+[2017-10-17 00:40:53,581: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-17 00:40:53,613: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-17 00:40:54,662: INFO/MainProcess] mingle: all alone
+[2017-10-17 00:40:54,698: WARNING/MainProcess] celery@9971466bb876 ready.
+[2017-10-17 00:43:37,982: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-17 00:43:38,025: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-17 00:43:39,071: INFO/MainProcess] mingle: all alone
+[2017-10-17 00:43:39,108: WARNING/MainProcess] celery@2593f91fa0e9 ready.
+[2017-10-17 00:44:18,607: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-17 00:44:18,669: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-17 00:44:19,702: INFO/MainProcess] mingle: all alone
+[2017-10-17 00:44:19,735: WARNING/MainProcess] celery@1c689eee2329 ready.
+[2017-10-17 00:47:06,791: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-17 00:47:06,828: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-17 00:47:07,878: INFO/MainProcess] mingle: all alone
+[2017-10-17 00:47:07,905: WARNING/MainProcess] celery@66f35006eb34 ready.
+[2017-10-18 16:21:07,600: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-18 16:21:07,632: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-18 16:21:08,661: INFO/MainProcess] mingle: all alone
+[2017-10-18 16:21:08,696: WARNING/MainProcess] celery@fa158798d08d ready.
+[2017-10-19 18:54:15,497: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-19 18:54:15,531: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-19 18:54:16,558: INFO/MainProcess] mingle: all alone
+[2017-10-19 18:54:16,585: WARNING/MainProcess] celery@af2fa0f926c7 ready.
+[2017-10-19 20:38:18,121: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-19 20:38:18,168: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-19 20:38:19,192: INFO/MainProcess] mingle: all alone
+[2017-10-19 20:38:19,217: WARNING/MainProcess] celery@ac2a96999f95 ready.
+[2017-10-19 22:03:55,625: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-19 22:03:55,666: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-19 22:03:56,691: INFO/MainProcess] mingle: all alone
+[2017-10-19 22:03:56,725: WARNING/MainProcess] celery@bc95cb21d484 ready.
+[2017-10-19 22:05:47,244: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-19 22:05:47,279: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-19 22:05:48,315: INFO/MainProcess] mingle: all alone
+[2017-10-19 22:05:48,349: WARNING/MainProcess] celery@701583ced1a1 ready.
+[2017-10-20 17:55:17,319: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 279, in start
+    blueprint.start(self)
+  File "/env/local/lib/python2.7/site-packages/celery/bootsteps.py", line 123, in start
+    step.start(parent)
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 838, in start
+    c.loop(*c.loop_args())
+  File "/env/local/lib/python2.7/site-packages/celery/worker/loops.py", line 76, in asynloop
+    next(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/async/hub.py", line 279, in create_loop
+    item()
+  File "/env/local/lib/python2.7/site-packages/amqp/utils.py", line 42, in __call__
+    self.set_error_state(exc)
+  File "/env/local/lib/python2.7/site-packages/amqp/utils.py", line 39, in __call__
+    **dict(self.kwargs, **kwargs) if self.kwargs else kwargs
+  File "/env/local/lib/python2.7/site-packages/kombu/connection.py", line 288, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/pyamqp.py", line 95, in drain_events
+    return connection.drain_events(**kwargs)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 324, in drain_events
+    return amqp_method(channel, args)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 530, in _close
+    (class_id, method_id), ConnectionError)
+ConnectionForced: (0, 0): (320) CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'
+[2017-10-20 17:55:17,364: ERROR/MainProcess] consumer: Cannot connect to amqp://quser:**@cybercom_rabbitmq:5671/vhost: [Errno 111] Connection refused.
+Trying again in 2.00 seconds...
+
+[2017-10-20 17:55:23,383: ERROR/MainProcess] consumer: Cannot connect to amqp://quser:**@cybercom_rabbitmq:5671/vhost: timed out.
+Trying again in 4.00 seconds...
+
+[2017-10-24 18:16:09,971: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 18:16:09,998: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 18:16:11,032: INFO/MainProcess] mingle: all alone
+[2017-10-24 18:16:11,067: WARNING/MainProcess] celery@a809837620b5 ready.
+[2017-10-24 21:03:09,156: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 21:03:09,186: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 21:03:10,210: INFO/MainProcess] mingle: all alone
+[2017-10-24 21:03:10,233: WARNING/MainProcess] celery@2e90edac6e27 ready.
+[2017-10-24 21:15:36,692: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 21:15:36,726: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 21:15:37,762: INFO/MainProcess] mingle: all alone
+[2017-10-24 21:15:37,793: WARNING/MainProcess] celery@e7680d9b2857 ready.
+[2017-10-24 21:26:01,154: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 21:26:01,201: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 21:26:02,223: INFO/MainProcess] mingle: all alone
+[2017-10-24 21:26:02,253: WARNING/MainProcess] celery@bf2d9ec20971 ready.
+[2017-10-24 21:29:34,078: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 21:29:34,112: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 21:29:35,134: INFO/MainProcess] mingle: all alone
+[2017-10-24 21:29:35,155: WARNING/MainProcess] celery@f37bf051b02e ready.
+[2017-10-24 21:43:29,556: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 21:43:29,592: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 21:43:30,622: INFO/MainProcess] mingle: all alone
+[2017-10-24 21:43:30,654: WARNING/MainProcess] celery@62c8e26db322 ready.
+[2017-10-24 21:44:59,279: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-10-24 21:44:59,326: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-24 21:45:00,356: INFO/MainProcess] mingle: all alone
+[2017-10-24 21:45:00,388: WARNING/MainProcess] celery@d9d730f8844a ready.
+[2017-11-01 16:11:03,553: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 16:11:03,598: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 16:11:04,614: INFO/MainProcess] mingle: all alone
+[2017-11-01 16:11:04,660: WARNING/MainProcess] celery@7f20e3d4bc05 ready.
+[2017-11-01 16:19:50,954: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 16:19:50,989: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 16:19:52,030: INFO/MainProcess] mingle: all alone
+[2017-11-01 16:19:52,056: WARNING/MainProcess] celery@1156580d7580 ready.
+[2017-11-01 16:23:56,494: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 16:23:56,521: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 16:23:57,545: INFO/MainProcess] mingle: all alone
+[2017-11-01 16:23:57,575: WARNING/MainProcess] celery@78ab8d9572ec ready.
+[2017-11-01 16:25:35,410: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 16:25:35,441: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 16:25:36,465: INFO/MainProcess] mingle: all alone
+[2017-11-01 16:25:36,491: WARNING/MainProcess] celery@1d15a10379b3 ready.
+[2017-11-01 16:32:42,801: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 16:32:42,843: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 16:32:43,871: INFO/MainProcess] mingle: all alone
+[2017-11-01 16:32:43,906: WARNING/MainProcess] celery@76e881e6e90d ready.
+[2017-11-01 16:48:48,457: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 16:48:48,496: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 16:48:49,527: INFO/MainProcess] mingle: all alone
+[2017-11-01 16:48:49,562: WARNING/MainProcess] celery@798053929cf9 ready.
+[2017-11-01 19:35:44,312: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 19:35:44,351: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 19:35:45,389: INFO/MainProcess] mingle: all alone
+[2017-11-01 19:35:45,419: WARNING/MainProcess] celery@f89bc67b366e ready.
+[2017-11-01 19:38:30,693: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-01 19:38:30,725: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-01 19:38:31,752: INFO/MainProcess] mingle: all alone
+[2017-11-01 19:38:31,783: WARNING/MainProcess] celery@53d0c6fe7428 ready.
+[2017-11-02 06:36:59,238: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 279, in start
+    blueprint.start(self)
+  File "/env/local/lib/python2.7/site-packages/celery/bootsteps.py", line 123, in start
+    step.start(parent)
+  File "/env/local/lib/python2.7/site-packages/celery/worker/consumer.py", line 838, in start
+    c.loop(*c.loop_args())
+  File "/env/local/lib/python2.7/site-packages/celery/worker/loops.py", line 76, in asynloop
+    next(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/async/hub.py", line 340, in create_loop
+    cb(*cbargs)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/base.py", line 164, in on_readable
+    reader(loop)
+  File "/env/local/lib/python2.7/site-packages/kombu/transport/base.py", line 146, in _read
+    drain_events(timeout=0)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 324, in drain_events
+    return amqp_method(channel, args)
+  File "/env/local/lib/python2.7/site-packages/amqp/connection.py", line 530, in _close
+    (class_id, method_id), ConnectionError)
+ConnectionForced: (0, 0): (320) CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'
+[2017-11-02 06:36:59,270: ERROR/MainProcess] consumer: Cannot connect to amqp://quser:**@cybercom_rabbitmq:5671/vhost: [Errno 111] Connection refused.
+Trying again in 2.00 seconds...
+
+[2017-11-02 06:37:05,289: ERROR/MainProcess] consumer: Cannot connect to amqp://quser:**@cybercom_rabbitmq:5671/vhost: timed out.
+Trying again in 4.00 seconds...
+
+[2017-11-03 22:20:50,202: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-03 22:20:50,233: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-03 22:20:51,264: INFO/MainProcess] mingle: all alone
+[2017-11-03 22:20:51,291: WARNING/MainProcess] celery@fcad281e87e6 ready.
+[2017-11-05 02:53:35,532: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 02:53:35,560: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 02:53:36,598: INFO/MainProcess] mingle: all alone
+[2017-11-05 02:53:36,635: WARNING/MainProcess] celery@de38c3491ebc ready.
+[2017-11-05 03:45:01,999: INFO/MainProcess] Connected to amqp://quser:**@cybercom_rabbitmq:5671/vhost
+[2017-11-05 03:45:02,043: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-05 03:45:03,066: INFO/MainProcess] mingle: all alone
+[2017-11-05 03:45:03,106: WARNING/MainProcess] celery@7cc4778b3b1e ready.
+>>>>>>> d7f6c51e394fe8b5dc9c3d614c4ad934289e634d

@@ -1,0 +1,116 @@
+#!/bin/bash
+
+# Pull in configuration items
+source /Users/byakodpramod/ga_dir/etag/config/config.sh
+
+#Docker worker host
+host_ip="example.oscer.ou.edu"
+#If docker is going to ssh to docker host. Need to setup keys and docker_username.
+docker_username="mstacy"
+
+#Mongo Data Node
+echo "************** Mongo Data Node ***********"
+docker volume create --name etag_mongodata
+if [ -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstrun ]; then
+  echo "*********** Create Mongo User ************"
+  docker run -it --rm \
+    -v etag_mongodata:/data/db:z \
+    -v /Users/byakodpramod/ga_dir/etag/config/config.sh:/config.sh \
+    -v /Users/byakodpramod/ga_dir/etag/config/addmongouser:/addmongouser \
+    --entrypoint /addmongouser mongo
+  rm -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstrun
+fi
+
+docker run -d --name etag_mongo \
+  -v etag_mongodata:/data/db:z \
+  -v /Users/byakodpramod/ga_dir/etag/config/ssl/backend:/ssl:z \
+  mongo --sslMode requireSSL \
+        --sslPEMKeyFile /ssl/server/mongodb.pem \
+        --sslCAFile /ssl/testca/cacert.pem \
+        --auth
+
+#Postgres
+echo "********* Start Test Postgres ************"
+docker run -d --name etag_postgres \
+  -e POSTGRES_PASSWORD=thisismypass \
+  -e POSTGRES_USER=etag_master \
+  -e PGDATA=/data/db \
+<<<<<<< HEAD
+  -e POSTGRES_DB=etag_auth \
+=======
+>>>>>>> d7f6c51e394fe8b5dc9c3d614c4ad934289e634d
+  -v /Users/byakodpramod/ga_dir/etag/data/postgres:/data/db:z \
+  postgres
+
+#Rabbitmq
+echo "************** Rabbitmq        ***********"
+docker run -d --name etag_rabbitmq \
+  -v /Users/byakodpramod/ga_dir/etag/config/ssl/backend:/ssl:z \
+  -e "RABBITMQ_DEFAULT_USER=${broker_username}" \
+  -e "RABBITMQ_DEFAULT_PASS=${broker_password}" \
+  -e "RABBITMQ_DEFAULT_VHOST=${vhost}" \
+  -e "RABBITMQ_SSL_CERT_FILE=/ssl/server/cert.pem" \
+  -e "RABBITMQ_SSL_KEY_FILE=/ssl/server/key.pem" \
+  -e "RABBITMQ_SSL_CA_FILE=/ssl/testca/cacert.pem" \
+  rabbitmq #cybercom/rabbitmq
+
+#Celery
+echo "********** Celery Async Queue ************"
+#-v path_to_key/.ssh:/root/.ssh:z
+docker run -d --name etag_celery \
+  --link etag_rabbitmq:cybercom_rabbitmq \
+  --link etag_mongo:cybercom_mongo \
+  -v /Users/byakodpramod/ga_dir/etag/config/celery/code:/code:z \
+  -v /Users/byakodpramod/ga_dir/etag/log:/log:z \
+  -v /Users/byakodpramod/ga_dir/etag/data:/data:z \
+  -v /Users/byakodpramod/ga_dir/etag/config/ssl/backend:/ssl:z \
+  -e "docker_worker=$host_ip" \
+  -e "docker_username=$docker_username" \
+  -e "C_FORCE_ROOT=true" \
+  -e "CELERY_CONCURRENCY=8" \
+  cybercom/celery
+
+#memcache
+echo "********* memcached   ********************"
+docker run --name etag_memcache -d memcached
+
+#API
+echo "*********  API       *********************"
+docker run -d --name etag_api \
+  --link etag_memcache:cybercom_memcache \
+  --link etag_mongo:cybercom_mongo \
+  --link etag_rabbitmq:cybercom_rabbitmq \
+<<<<<<< HEAD
+=======
+  --link etag_postgres:cybercom_postgres \
+>>>>>>> d7f6c51e394fe8b5dc9c3d614c4ad934289e634d
+  -p 8080:8080 \
+  -v /Users/byakodpramod/ga_dir/etag/config/ssl/backend:/ssl:z \
+  -v /Users/byakodpramod/ga_dir/etag/api_code:/usr/src/app:z \
+  -v /Users/byakodpramod/ga_dir/etag/config/api_config.py:/usr/src/app/api/config.py:z \
+<<<<<<< HEAD
+  -v /Users/byakodpramod/ga_dir/etag/config/db.sqlite3:/usr/src/app/db.sqlite3:z \
+=======
+>>>>>>> d7f6c51e394fe8b5dc9c3d614c4ad934289e634d
+  -v /Users/byakodpramod/ga_dir/etag/log:/log:z \
+  -v /Users/byakodpramod/ga_dir/etag/data:/data:z \
+  api
+
+# Nginx - if only one platform on system can leave in setup. 
+# If multiple cybercommons application running on same system. Comment out and add service with nginx to match api reverse proxy ports from api. See nginx config an default!
+
+echo "********* Ngnix        ********************"
+docker run -p 80:80 --name etag_nginx \
+  --link etag_api \
+  -v /Users/byakodpramod/ga_dir/etag/data:/data:z \
+  -v /Users/byakodpramod/ga_dir/etag/config/nginx/nginx.conf:/etc/nginx/nginx.conf:z \
+  -v /Users/byakodpramod/ga_dir/etag/config/nginx/default.conf:/etc/nginx/conf.d/default.conf:z \
+  -d nginx
+
+
+#Configure and add-ons to containers
+echo "******** Configure Cybercom **************"
+
+echo "********* Celery Requires wget ************"
+docker exec -it etag_celery apt-get install wget
+

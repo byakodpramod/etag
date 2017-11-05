@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Kill only namespace docker container and remove containers
+docker ps |grep etag | awk '{print $1}'| xargs docker kill 
+docker ps -a | grep etag| awk '{print $1}' | xargs docker rm 
+#sudo service docker stop
+#sudo service docker start

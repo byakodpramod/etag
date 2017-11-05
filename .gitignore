@@ -1,0 +1,6 @@
+config/
+*.pem
+*.key
+*.crt
+secrets.*
+data/

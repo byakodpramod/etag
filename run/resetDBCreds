@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker stop etag_mongo
+
+docker run -it --rm \
+  -v etag_mongodata:/data/db:z \
+  -v /Users/byakodpramod/ga_dir/etag/config/config.sh:/config.sh \
+  -v /Users/byakodpramod/ga_dir/etag/config/addmongouser:/addmongouser \
+  --entrypoint /addmongouser mongo
+
+docker start etag_mongo
