@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Pull in configuration items
-source /home/tdpearson/etag/config/config.sh
+source /Users/byakodpramod/ga_dir/etag/config/config.sh
 
 #Docker worker host
 host_ip="example.oscer.ou.edu"
@@ -11,7 +11,7 @@ docker_username="mstacy"
 #Mongo Data Node
 echo "************** Mongo Data Node ***********"
 docker volume create --name etag_mongodata
-if [ -f /home/tdpearson/etag/config/thisisfirstrun ]; then
+if [ -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstrun ]; then
   echo "*********** Create Mongo User ************"
   docker run -it --rm \
     -v etag_mongodata:/data/db:z \
@@ -78,7 +78,7 @@ docker run -d --name etag_api \
   --link etag_memcache:cybercom_memcache \
   --link etag_mongo:cybercom_mongo \
   --link etag_rabbitmq:cybercom_rabbitmq \
-  --link etag_postgres:cybercom_postgres \
+  --link etag_postgres:postgres \
   -p 8080:8080 \
   -v /Users/byakodpramod/ga_dir/etag/config/ssl/backend:/ssl:z \
   -v /Users/byakodpramod/ga_dir/etag/api_code:/usr/src/app:z \

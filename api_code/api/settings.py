@@ -117,30 +117,30 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 DATABASES = config.DATABASES
 
-DATABASE_ROUTERS = config.DATABASE_ROUTERS
+#DATABASE_ROUTERS = config.DATABASE_ROUTERS
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-DATABASES = {
-   'default': {
+#DATABASES = {
+#   'default': {
 #       'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #       'NAME': 'etag_auth',
 #       'USER': 'etag_master',
 #       'PASSWORD': 'thisismypass',
-#       'HOST': 'cybercom_postgres',
+#       'HOST': 'etag_postgres',
 #       'PORT': '5432',
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-   },
+#       'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#   }
 #   'etag': {
 #       'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #       'NAME': 'etag',
 #       'USER': 'etag_master',
 #       'PASSWORD': 'thisismypass',
-#       'HOST': 'cybercom_postgres',
+#       'HOST': 'etag_postgres',
 #       'PORT': '5432',
 #    }
-}
+#}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
