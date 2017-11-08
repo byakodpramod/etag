@@ -18,7 +18,7 @@ if [ -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstrun ]; then
     -v /Users/byakodpramod/ga_dir/etag/config/config.sh:/config.sh \
     -v /Users/byakodpramod/ga_dir/etag/config/addmongouser:/addmongouser \
     --entrypoint /addmongouser mongo
-  rm -f /home/tdpearson/etag/config/thisisfirstrun
+  rm -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstrun
 fi
 
 docker run -d --name etag_mongo \
@@ -32,7 +32,7 @@ docker run -d --name etag_mongo \
 #Postgres
 echo "********* Start Test Postgres ************"
 docker run -d --name etag_postgres \
-  -e POSTGRES_PASSWORD=thisismypass \
+  -e POSTGRES_PASSWORD=thisismypas \
   -e POSTGRES_USER=etag_master \
   -e PGDATA=/data/db \
   -e POSTGRES_DB=etag_auth \

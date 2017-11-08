@@ -4,3 +4,4 @@ config/
 *.crt
 secrets.*
 data/
+log/
