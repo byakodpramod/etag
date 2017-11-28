@@ -8,6 +8,17 @@ host_ip="example.oscer.ou.edu"
 #If docker is going to ssh to docker host. Need to setup keys and docker_username.
 docker_username="mstacy"
 
+#Postgres
+echo "********* Start Test Postgres ************"
+docker run --name etag_postgres \
+  -d -v /Users/byakodpramod/ga_dir/etag/data/postgres:/var/lib/postgresql/data \
+  postgres
+
+
+#docker run --name etag_postgres \
+#  -d -v /Users/byakodpramod/ga_dir/etag/data/postgres:/data/db:z \
+#  postgres
+
 #Mongo Data Node
 echo "************** Mongo Data Node ***********"
 docker volume create --name etag_mongodata
@@ -29,17 +40,6 @@ docker run -d --name etag_mongo \
         --sslCAFile /ssl/testca/cacert.pem \
         --auth
 
-#Postgres
-echo "********* Start Test Postgres ************"
-docker run -d --name etag_postgres \
-  -e POSTGRES_PASSWORD=thisismypas \
-  -e POSTGRES_USER=etag_master \
-  -e PGDATA=/data/db \
-  -e POSTGRES_DB=etag_auth \
-  -v /Users/byakodpramod/ga_dir/etag/data/postgres:/data/db:z \
-  postgres
-
-
 #Rabbitmq
 echo "************** Rabbitmq        ***********"
 docker run -d --name etag_rabbitmq \
@@ -53,6 +53,7 @@ docker run -d --name etag_rabbitmq \
   rabbitmq #cybercom/rabbitmq
 
 #Celery
+
 echo "********** Celery Async Queue ************"
 #-v path_to_key/.ssh:/root/.ssh:z
 docker run -d --name etag_celery \
