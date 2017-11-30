@@ -163,7 +163,6 @@ class etagDataUploadView(APIView):
         def post(self, request, uploadDirectory="/data/file_upload",format=None):
                 #Get Token for task submission
                 tok = Token.objects.get_or_create(user=self.request.user)
-		print 'I am in etagDataUploadView'
                 headers = {'Authorization':'Token {0}'.format(str(tok[0])),'Content-Type':'application/json'} 
                 #check if uploadDirectory exists
                 if not os.path.isdir(uploadDirectory):
