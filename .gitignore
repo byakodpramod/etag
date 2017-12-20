@@ -1,4 +1,5 @@
 config/
+*.pyc
 *.pem
 *.key
 *.crt
