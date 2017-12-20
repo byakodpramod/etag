@@ -136,6 +136,7 @@ class TagReadsViewSet(viewsets.ModelViewSet):
     ordering_fields =  '__all__' 
 	
     def get_queryset(self):
+	if self.request.user.is_authenticated():
 		public_data=self.request.DATA.get('public', None)
 		user = self.request.user
 		if public_data:
@@ -144,6 +145,8 @@ class TagReadsViewSet(viewsets.ModelViewSet):
             		return []
 		else :             
         		return TagReads.objects.filter(tag__user_id = user.id)
+	public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+	return TagReads.objects.filter(tag_id__in=public_tags)
 	
 class AccessoryDataViewSet(viewsets.ModelViewSet):
     """
