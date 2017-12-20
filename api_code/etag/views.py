@@ -106,9 +106,11 @@ class TagsViewSet(viewsets.ModelViewSet):
 	
     def get_queryset(self):
         user = self.request.user
-        if not user:
-            return []
-        return Tags.objects.filter(user_id=user.id)
+	if self.request.user.is_authenticated():
+        	if not user:
+            		return []
+        	return Tags.objects.filter(user_id=user.id)
+	return Tags.objects.filter(public=True)
 		
     def create(self, request):
         serializer = self.serializer_class(data=request.DATA)
