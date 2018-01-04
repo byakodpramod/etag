@@ -9,7 +9,7 @@ host_ip="example.oscer.ou.edu"
 docker_username="mstacy"
 
 #Postgres
-echo "********* Start Test Postgres ************"
+echo "********* Postgres ************"
 docker run --name etag_postgres \
   -d -v /Users/byakodpramod/ga_dir/etag/data/postgres:/var/lib/postgresql/data \
   postgres
