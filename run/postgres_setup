@@ -1,0 +1,11 @@
+docker run --name xyz_postgres \
+  -d -v /Users/byakodpramod/ga_dir/etag/data/postgres:/var/lib/postgresql/data \
+  postgres
+sleep 10
+docker exec -it etag_postgres psql -U postgres -c 'create database etag'
+docker exec -it etag_postgres psql -U postgres -c 'create database etag_auth'
+docker exec -it etag_postgres psql -U postgres -c "create user etag_master with password 'etag_master'"
+docker exec -it etag_postgres psql -U postgres -c 'GRANT ALL PRIVILEGES ON DATABASE etag to etag_master'
+docker exec -it etag_postgres psql -U postgres -c 'GRANT ALL PRIVILEGES ON DATABASE etag_auth to etag_master'
+docker exec -it etag_postgres psql -U postgres -d etag -f /var/lib/postgresql/data/etag.sql
+docker exec -it etag_postgres psql -U postgres -d etag_auth -f  /var/lib/postgresql/data/etag_auth.sql

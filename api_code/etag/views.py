@@ -34,9 +34,13 @@ class ReadersViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-        if not user:
-            return []	
-        return Readers.objects.filter(user_id=user.id)
+	if self.request.user.is_authenticated():
+        	if not user:
+            		return []	
+        	return Readers.objects.filter(user_id=user.id)
+	public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+        public_tag_readers = TagReads.objects.filter(tag_id__in=public_tags).values_list('reader_id')
+	return Readers.objects.filter(reader_id__in=public_tag_readers)
 
     def create(self, request):
         serializer = self.serializer_class(data=request.DATA)
@@ -65,10 +69,13 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
 	
     def get_queryset(self):
         user = self.request.user
-        if not user:
-            return []
-             
-        return ReaderLocation.objects.filter(reader__user_id = user.id)
+	if self.request.user.is_authenticated():
+        	if not user:
+            		return []
+        	return ReaderLocation.objects.filter(reader__user_id = user.id)
+	public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+	public_tag_readers = TagReads.objects.filter(tag_id__in=public_tags).values_list('reader_id')
+	return ReaderLocation.objects.filter(reader_id__in=public_tag_readers)
 
 	
 class AnimalViewSet(viewsets.ModelViewSet):
@@ -85,10 +92,12 @@ class AnimalViewSet(viewsets.ModelViewSet):
 	
     def get_queryset(self):
         user = self.request.user
-        if not user:
-            return []
-             
-        return TagAnimal.objects.filter(tag__user_id = user.id)
+	if self.request.user.is_authenticated():
+        	if not user:
+            		return []
+        	return TagAnimal.objects.filter(tag__user_id = user.id)
+	public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+        return TagAnimal.objects.filter(tag_id__in=public_tags)
 
 	
 class TagsViewSet(viewsets.ModelViewSet):

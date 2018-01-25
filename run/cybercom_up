@@ -9,15 +9,16 @@ host_ip="example.oscer.ou.edu"
 docker_username="mstacy"
 
 #Postgres
-echo "********* Start Test Postgres ************"
+echo "********* Postgres ************"
+#if [ -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstpostrun ]; then
+#  echo "*********** Create temp postgres container ************"
+#	./postgres_setup
+#  rm -f /Users/byakodpramod/ga_dir/etag/config/thisisfirstpostrun
+#fi
+
 docker run --name etag_postgres \
   -d -v /Users/byakodpramod/ga_dir/etag/data/postgres:/var/lib/postgresql/data \
   postgres
-
-
-#docker run --name etag_postgres \
-#  -d -v /Users/byakodpramod/ga_dir/etag/data/postgres:/data/db:z \
-#  postgres
 
 #Mongo Data Node
 echo "************** Mongo Data Node ***********"
