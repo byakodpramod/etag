@@ -1,7 +1,7 @@
 __author__ = 'mstacy'
 import django_filters
 
-from models import Readers, ReaderLocation,Tags, TagReads, TagAnimal
+from models import *
 
 
 class ReadersFilter(django_filters.FilterSet):
