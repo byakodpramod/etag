@@ -47,7 +47,7 @@ class ReadersViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.DATA)
 
         if serializer.is_valid():
-            reader = Readers.objects.create(reader_id=serializer.data['reader_id'],name=serializer.data['name'],description=serializer.data['description'])
+            reader = Readers.objects.create(reader_id=serializer.data['reader_id'],description=serializer.data['description'])
             reader.user_id = self.request.user.id
             reader.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -86,6 +86,7 @@ class AnimalViewSet(viewsets.ModelViewSet):
     Animal table view set.
     """
     model = TaggedAnimal
+    queryset = TaggedAnimal.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = AnimalSerializer
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
@@ -110,12 +111,13 @@ class TagsViewSet(viewsets.ModelViewSet):
     Tags table view set.
     """
     model = TagOwner
+    queryset = TagOwner.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = TagsSerializer
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter ,filters.OrderingFilter)
     filter_class = TagOwnerFilter
-    search_fields = ('tag_id',)
+    #search_fields = ('tag_id',)
     ordering_fields = '__all__'
 	
     def get_queryset(self):
@@ -142,13 +144,14 @@ class TagReadsViewSet(viewsets.ModelViewSet):
     TagReads table view set.
     """
     model = TagReads
+    queryset = TagReads.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = TagReadsSerializer
-    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer,eventdropsJSONRenderer)
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
     filter_class = TagReadsFilter
-    search_fields = ('tag_id',)
-    ordering_fields =  '__all__' 
+    search_fields = ('tag_id')
+    ordering_fields = '__all__'
 	
     def get_queryset(self):
 	user = self.request.user

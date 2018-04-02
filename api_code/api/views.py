@@ -33,7 +33,7 @@ class APIRoot(APIView):
                              'Data Store': {'ETAG Postgresql':{'Readers':reverse('readers-list',request=request),
                                               'Reader Location':reverse('readerlocation-list',request=request),
                                              # 'Tags':reverse('tags-list',request=request),
-                                             # 'Tag Read':reverse('tagreads-list',request=request),
+                                               'Tag Read':reverse('tagreads-list',request=request),
                                              # 'Tag Animal':reverse('taganimal-list',request=request),
                                              },
               'Mongo':reverse('data-list',request=request)
