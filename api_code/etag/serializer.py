@@ -53,7 +53,7 @@ class AnimalSerializer(serializers.HyperlinkedModelSerializer):
     #def create(self, validated_data):
      #   return Roosts.objects.using('purple').create(**validated_data)
 	 
-class TagsSerializer(serializers.HyperlinkedModelSerializer):
+class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
     #tag_animals = AnimalSerializer()
     tag = serializers.SlugRelatedField(slug_field='tag_id')
     class Meta:
@@ -67,7 +67,7 @@ class TagReadsSerializer(serializers.HyperlinkedModelSerializer):
     reader = serializers.SlugRelatedField(slug_field='reader_id')
     reader_url = serializers.HyperlinkedIdentityField(view_name='readers-detail')
     tag = serializers.SlugRelatedField(slug_field='tag_id')
-    tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
+    #tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
     class Meta:
         model = TagReads
         fields = ('url','reader_id','tag_id', 'tag_read_time',)
