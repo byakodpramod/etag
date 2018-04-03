@@ -64,10 +64,10 @@ class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
 
 class TagReadsSerializer(serializers.HyperlinkedModelSerializer):
     #source = LuSourceSerializer()
-    reader = serializers.SlugRelatedField(slug_field='reader_id')
+    reader_id = serializers.SlugRelatedField(slug_field='reader_id')
     reader_url = serializers.HyperlinkedIdentityField(view_name='readers-detail')
-    tag = serializers.SlugRelatedField(slug_field='tag_id')
-    #tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
+    tag_id = serializers.SlugRelatedField(slug_field='tag_id')
+    tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
     class Meta:
         model = TagReads
         fields = ('url','reader_id','tag_id', 'tag_read_time',)
