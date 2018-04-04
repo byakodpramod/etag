@@ -8,7 +8,7 @@ from etag.views import TaggedAnimalViewSet,etagDataUploadView
 
 router = routers.SimpleRouter()
 router.register('readers', ReadersViewSet)
-router.register('readerlocation', ReaderLocationViewSet)
+router.register('reader_location', ReaderLocationViewSet)
 router.register('tags', TagOwnerViewSet)
 router.register('tag_reads', TagReadsViewSet)
 router.register('tag_animal', TaggedAnimalViewSet)

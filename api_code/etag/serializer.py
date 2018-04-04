@@ -37,9 +37,8 @@ class ReaderSerializer(serializers.HyperlinkedModelSerializer):
 
 class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
     #source = LuSourceSerializer()
-    #reader_id = ReaderSerializer()
     reader_id = serializers.SlugRelatedField(slug_field='reader_id')
-    #location_id = serializers.SlugRelatedField(slug_field='location_id')
+    location_id = serializers.RelatedField(source='location_id.location_id', read_only=True)
     class Meta:
         model = ReaderLocation
         fields = ('url','reader_id','location_id','start_timestamp','end_timestamp')
@@ -49,6 +48,7 @@ class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
 class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     field_data=WritableJSONField() #serializers.DictField()
+    animal_id = serializers.RelatedField(source='animal_id.animal_id', read_only=True)
     class Meta:
         model = TaggedAnimal
         fields = ('url','tag_id','animal_id','start_time','end_time','field_data',)
@@ -56,7 +56,6 @@ class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
      #   return Roosts.objects.using('purple').create(**validated_data)
 	 
 class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
-    #tag_animals = AnimalSerializer()
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     class Meta:
         model = TagOwner
@@ -65,7 +64,6 @@ class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
      #   return Roosts.objects.using('purple').create(**validated_data)
 
 class TagReadsSerializer(serializers.HyperlinkedModelSerializer):
-    #source = LuSourceSerializer()
     reader_id = serializers.SlugRelatedField(slug_field='reader_id')
     reader_url = serializers.HyperlinkedIdentityField(view_name='readers-detail')
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
