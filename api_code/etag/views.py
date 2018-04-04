@@ -9,7 +9,7 @@ from rest_framework.parsers import JSONParser,MultiPartParser,FormParser,FileUpl
 #from renderer import CustomBrowsableAPIRenderer
 from filters import *
 from etag.models import *
-from serializer import ReaderSerializer, AnimalSerializer,ReaderLocationSerializer,TagOwnerSerializer,TagReadsSerializer
+from serializer import ReaderSerializer, TaggedAnimalSerializer,ReaderLocationSerializer,TagOwnerSerializer,TagReadsSerializer
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -72,7 +72,7 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
         user = self.request.user
 	if self.request.user.is_authenticated():
         	if not user:
-            		return []
+           		return []
 		#private_tags = Tags.objects.filter(public=False,user_id=user.id).values_list('tag_id')
         	private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
 		return ReaderLocation.objects.filter(reader_id__in=private_tag_readers)
@@ -81,14 +81,14 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
 	return ReaderLocation.objects.filter(reader_id__in=public_tag_readers)
 
 	
-class AnimalViewSet(viewsets.ModelViewSet):
+class TaggedAnimalViewSet(viewsets.ModelViewSet):
     """
     Animal table view set.
     """
     model = TaggedAnimal
     queryset = TaggedAnimal.objects.all()
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    serializer_class = AnimalSerializer
+    serializer_class = TaggedAnimalSerializer
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
     filter_class = TaggedAnimalFilter

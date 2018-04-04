@@ -19,7 +19,7 @@ class Readers(models.Model):
     description = models.CharField(max_length=255, blank=True)
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,db_column='user_id',)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'readers'
 
 class Locations(models.Model):
@@ -29,7 +29,7 @@ class Locations(models.Model):
     longitude = models.FloatField(blank=True, null=True)
     active = models.NullBooleanField()
     class Meta:
-        managed = True
+        managed = False
         db_table = 'locations'
 
 class Animals(models.Model):
@@ -37,14 +37,14 @@ class Animals(models.Model):
     species = models.CharField(max_length=255, blank=True)
     field_data = JSONField(blank=True,load_kwargs={'object_pairs_hook': collections.OrderedDict})
     class Meta:
-        managed = True
+        managed = False
         db_table = 'animals'
 
 class Tags(models.Model):
     tag_id = models.CharField(primary_key=True, max_length=10)
     description = models.CharField(max_length=500, blank=True)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'tags'
 
 class TagReads(models.Model):
@@ -56,7 +56,7 @@ class TagReads(models.Model):
     field_data = JSONField(blank=True,load_kwargs={'object_pairs_hook': collections.OrderedDict})
     public = models.BooleanField(default=False)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'tag_reads'
         unique_together = (("tag_reads_id","reader_id", "tag_id", "tag_read_time"),)
 
@@ -64,7 +64,7 @@ class UploadLocation(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,db_column='user_id',)
     location_id = models.ForeignKey('Locations',on_delete=models.CASCADE,db_column='location_id',)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'upload_location'
         unique_together = (("user_id","location_id"),)
 
@@ -74,7 +74,7 @@ class ReaderLocation(models.Model):
     start_timestamp = models.DateTimeField(blank=True, null=True)
     end_timestamp = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'reader_location'
 
 class TagOwner(models.Model):
@@ -83,7 +83,7 @@ class TagOwner(models.Model):
     start_time = models.DateTimeField(blank=True, null=True)
     end_time = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'tag_owner'
 
 class AnimalHitReader(models.Model):
@@ -91,7 +91,7 @@ class AnimalHitReader(models.Model):
     animal_id = models.ForeignKey('Animals',on_delete=models.CASCADE,db_column='animal_id',)
     tag_id = models.ForeignKey('Tags',on_delete=models.CASCADE,)
     class Meta:
-        managed = True
+        managed = False
         db_table = 'animal_hit_reader'
         unique_together = (("reader_id", "animal_id", "tag_id"),)
 
@@ -102,5 +102,5 @@ class TaggedAnimal(models.Model):
     end_time = models.DateTimeField(blank=True, null=True)
     field_data = JSONField(blank=True,load_kwargs={'object_pairs_hook': collections.OrderedDict})
     class Meta:
-        managed = True
+        managed = False
         db_table = 'tagged_animal'
