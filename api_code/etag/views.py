@@ -133,7 +133,7 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.DATA)
 
         if serializer.is_valid():
-            reader = Tags.objects.create(tag_id=serializer.data['tag_id'],name=serializer.data['name'],description=serializer.data['description'])
+            reader = Tags.objects.create(tag_id=serializer.data['tag_id'],start_time=serializer.data['start_time'],end_time=serializer.data['end_time'])
             reader.user_id = self.request.user.id
             reader.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
