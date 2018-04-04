@@ -37,7 +37,7 @@ class ReadersViewSet(viewsets.ModelViewSet):
         	if not user:
             		return []
 		#private_tags = TagReads.objects.filter(public=False,user=user.id).values_list('tag_id')
-		private_tag_readers = TagReads.objects.filter(public=False,user=user.id).values_list('reader_id')
+		private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
         	return Readers.objects.filter(reader_id__in=private_tag_readers)
 	#public_tags = Tags.objects.filter(public=True).values_list('tag_id')
         public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
@@ -74,7 +74,7 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
         	if not user:
             		return []
 		#private_tags = Tags.objects.filter(public=False,user_id=user.id).values_list('tag_id')
-        	private_tag_readers = TagReads.objects.filter(public=False,user=user.id).values_list('reader_id')
+        	private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
 		return ReaderLocation.objects.filter(reader_id__in=private_tag_readers)
 	#public_tags = Tags.objects.filter(public=True).values_list('tag_id')
 	public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
@@ -100,7 +100,7 @@ class AnimalViewSet(viewsets.ModelViewSet):
         	if not user:
             		return []
 		#user_tags = TagOwner.objects.filter(user=user.id).values_list('tag_id')
-		private_tags = TagReads.objects.filter(public=False,user=user.id).values_list('tag_id').distinct()
+		private_tags = TagReads.objects.filter(public=False,user_id=user.id).values_list('tag_id').distinct()
         	return TaggedAnimal.objects.filter(tag_id__in=private_tags)
 	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
         return TaggedAnimal.objects.filter(tag_id__in=public_tags)
@@ -125,7 +125,7 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
 	if self.request.user.is_authenticated():
         	if not user:
             		return []
-        	return TagOwner.objects.filter(user=user.id)
+        	return TagOwner.objects.filter(user_id=user.id)
 	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
 	return TagOwner.objects.filter(tag_id__in=public_tags)
 		
@@ -160,8 +160,8 @@ class TagReadsViewSet(viewsets.ModelViewSet):
             		return []
 		else :             
         		return TagReads.objects.filter(user_id = user.id)
-	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
-	return TagReads.objects.filter(tag_id__in=public_tags)
+	#public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
+	return TagReads.objects.filter(public=True)
 	
 
 class etagDataUploadView(APIView):
