@@ -37,9 +37,8 @@ class ReadersViewSet(viewsets.ModelViewSet):
         	if not user:
             		return []
 		#private_tags = TagReads.objects.filter(public=False,user=user.id).values_list('tag_id')
-		private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
-        	return Readers.objects.filter(reader_id__in=private_tag_readers)
-	#public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+		#private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
+        	return Readers.objects.filter(user_id=user.id)
         public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
 	return Readers.objects.filter(reader_id__in=public_tag_readers)
 
@@ -74,8 +73,8 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
         	if not user:
            		return []
 		#private_tags = Tags.objects.filter(public=False,user_id=user.id).values_list('tag_id')
-        	private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
-		return ReaderLocation.objects.filter(reader_id__in=private_tag_readers)
+        	#private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
+		return ReaderLocation.objects.filter(reader_id__user_id=user.id)
 	#public_tags = Tags.objects.filter(public=True).values_list('tag_id')
 	public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
 	return ReaderLocation.objects.filter(reader_id__in=public_tag_readers)
@@ -133,9 +132,11 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.DATA)
 
         if serializer.is_valid():
-            reader = Tags.objects.create(tag_id=serializer.data['tag_id'],start_time=serializer.data['start_time'],end_time=serializer.data['end_time'])
-            reader.user_id = self.request.user.id
-            reader.save()
+            tag = Tags.objects.create(tag_id=serializer.data['tag_id'],description=serializer.data['description'])
+	    tag_owner = TagOwner.objects.create(tag_id=serializer.data['tag_id'],start_time=serializer.data['start_time'],end_time=serializer.data['end_time'])
+            tag_owner.user_id = self.request.user.id
+            tag.save()
+	    tag_owner.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 	
