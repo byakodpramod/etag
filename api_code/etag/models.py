@@ -48,7 +48,7 @@ class Tags(models.Model):
         db_table = 'tags'
 
 class TagReads(models.Model):
-    tag_reads_id = models.IntegerField(max_length=10)
+    tag_reads_id = models.AutoField(max_length=10,primary_key=True)
     reader_id = models.ForeignKey('Readers',on_delete=models.CASCADE,db_column='reader_id',)
     tag_id = models.ForeignKey('Tags',on_delete=models.CASCADE,db_column='tag_id',)
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,db_column='user_id')
