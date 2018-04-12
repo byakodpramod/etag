@@ -38,7 +38,8 @@ class ReaderSerializer(serializers.HyperlinkedModelSerializer):
 class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
     #source = LuSourceSerializer()
     reader_id = serializers.SlugRelatedField(slug_field='reader_id')
-    location_id = serializers.RelatedField(source='location_id.location_id', read_only=True)
+    #location_id = serializers.RelatedField(source='location_id.location_id', read_only=True)
+    location_id = serializers.SlugRelatedField(slug_field='location_id')
     class Meta:
         model = ReaderLocation
         fields = ('url','reader_id','location_id','start_timestamp','end_timestamp')
@@ -48,7 +49,8 @@ class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
 class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     field_data=WritableJSONField() #serializers.DictField()
-    animal_id = serializers.RelatedField(source='animal_id.animal_id', read_only=True)
+    #animal_id = serializers.RelatedField(source='animal_id.animal_id', read_only=True)
+    animal_id = serializers.SlugRelatedField(slug_field='animal_id')
     class Meta:
         model = TaggedAnimal
         fields = ('url','tag_id','animal_id','start_time','end_time','field_data',)
