@@ -73,14 +73,6 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
 	public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
 	return ReaderLocation.objects.filter(reader_id__in=public_tag_readers)
 
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-        if serializer.is_valid():
-            reader_loc = ReaderLocation.objects.create(reader_id=serializer.data['reader_id'],location_id=serializer.data['location_id'],start_timestamp=serializer.data['start_timestamp'],end_timestamp=serializer.data['end_timestamp'])
-            reader_loc.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 	
 class TaggedAnimalViewSet(viewsets.ModelViewSet):
     """
@@ -128,18 +120,8 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
         	return TagOwner.objects.filter(user_id=user.id)
 	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
 	return TagOwner.objects.filter(tag_id__in=public_tags)
-		
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
 
-        if serializer.is_valid():
-            #tag = Tags.objects.create(tag_id=serializer.data['tag_id'])
-	    tag_owner = TagOwner.objects.create(tag_id=serializer.data['tag_id'],start_time=serializer.data['start_time'],end_time=serializer.data['end_time'],user_id=self.request.user)
-            #tag.save()
-	    tag_owner.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-	
+
 class TagReadsViewSet(viewsets.ModelViewSet):
     """
     TagReads table view set.
@@ -166,11 +148,11 @@ class TagReadsViewSet(viewsets.ModelViewSet):
     def create(self, request):
         serializer = self.serializer_class(data=request.DATA)
         if serializer.is_valid():
-            tag_read = TagReads.objects.create(reader_id=serializer.data['reader_id'],tag_id=serializer.data['tag_id'],user_id=self.request.user,tag_read_time=serializer.data['tag_read_time'])
-            tag_read.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
+    	   user=self.request.user.id
+           serializer.save(user_id=user)
+           return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-	
+
 
 class etagDataUploadView(APIView):
         permission_classes =(IsAuthenticated,)

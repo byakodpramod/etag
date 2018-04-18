@@ -1,6 +1,7 @@
 from rest_framework import serializers
 import json
 from models import *
+import os, requests
 
 class WritableJSONField(serializers.WritableField):
     def to_native(self, obj):
@@ -42,7 +43,7 @@ class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
     location_id = serializers.SlugRelatedField(slug_field='location_id')
     class Meta:
         model = ReaderLocation
-        fields = ('url','reader_id','location_id','start_timestamp','end_timestamp')
+        fields = ('url','reader_id','location_id','start_timestamp','end_timestamp',)
     #def create(self, validated_data):
      #   return Roosts.objects.using('purple').create(**validated_data)
 
@@ -59,9 +60,12 @@ class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
 	 
 class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
+    user_id = serializers.IntegerField()
+    #user_id = serializers.PrimaryKeyRelatedField(read_only=True,default=serializers.CurrentUserDefault())
+
     class Meta:
         model = TagOwner
-        fields = ('url','tag_id','start_time','end_time')#'user_id')
+        fields = ('url','tag_id','start_time','end_time','user_id')
     #def create(self, validated_data):
      #   return Roosts.objects.using('purple').create(**validated_data)
 
@@ -70,8 +74,12 @@ class TagReadsSerializer(serializers.HyperlinkedModelSerializer):
     reader_url = serializers.HyperlinkedIdentityField(view_name='readers-detail')
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
+    field_data = WritableJSONField()
+    #user_id = serializers.PrimaryKeyRelatedField(read_only=True,default=serializers.CurrentUserDefault())
+    user_id = serializers.IntegerField()
+
     class Meta:
         model = TagReads
-        fields = ('url','reader_id','tag_id', 'tag_read_time','public',)
+        fields = ('url','reader_id','tag_id','field_data','tag_read_time','public','user_id')
     #def create(self, validated_data):
      #   return Roosts.objects.using('purple').create(**validated_data)
