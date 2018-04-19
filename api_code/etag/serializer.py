@@ -17,24 +17,9 @@ class JSONSerializerField(serializers.Field):
         return value
 
 class ReaderSerializer(serializers.HyperlinkedModelSerializer):
-    #source = LuSourceSerializer()
-    reader_location = serializers.SerializerMethodField('make_url')
     class Meta:
         model = Readers
-        fields = ('url','reader_id', 'description')#'user_id')
-
-    def make_url(self, obj):
-        """
-        Build URL for Order instance
-        """
-        # Prepare the IDs you need for the URL reverse
-        kwargs = {
-            'reader_id': obj.reader_id,
-        }
-        url = reverse('readers-list', kwargs=kwargs)
-        return self.context['request'].build_absolute_uri(url)
-    #def create(self, validated_data):
-     #   return Roosts.objects.using('purple').create(**validated_data)
+        fields = ('url','reader_id','description',)
 
 class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
     #source = LuSourceSerializer()
@@ -60,8 +45,11 @@ class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
 	 
 class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
-    user_id = serializers.IntegerField()
+    user_id = serializers.Field(source='user_id')
     #user_id = serializers.PrimaryKeyRelatedField(read_only=True,default=serializers.CurrentUserDefault())
+    
+    def validate_user(self): 
+	return self.context['request'].user.id
 
     class Meta:
         model = TagOwner
@@ -76,7 +64,7 @@ class TagReadsSerializer(serializers.HyperlinkedModelSerializer):
     tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
     field_data = WritableJSONField()
     #user_id = serializers.PrimaryKeyRelatedField(read_only=True,default=serializers.CurrentUserDefault())
-    user_id = serializers.IntegerField()
+    user_id = serializers.Field(source='user_id')
 
     class Meta:
         model = TagReads

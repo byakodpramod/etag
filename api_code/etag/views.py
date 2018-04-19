@@ -44,7 +44,7 @@ class ReadersViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(data=request.DATA)
 
         if serializer.is_valid():
-            reader = Readers.objects.create(reader_id=serializer.data['reader_id'],description=serializer.data['description'],user_id=self.request.user)
+            reader = Readers.objects.create(reader_id=serializer.data['reader_id'],description=serializer.data['description'],user_id=self.request.user.id)
             reader.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -111,7 +111,6 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
     filter_class = TagOwnerFilter
     #search_fields = ('tag_id',)
     ordering_fields = '__all__'
-	
     def get_queryset(self):
         user = self.request.user
 	if self.request.user.is_authenticated():
@@ -120,8 +119,10 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
         	return TagOwner.objects.filter(user_id=user.id)
 	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
 	return TagOwner.objects.filter(tag_id__in=public_tags)
-
-
+    
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
+ 
 class TagReadsViewSet(viewsets.ModelViewSet):
     """
     TagReads table view set.
@@ -145,14 +146,8 @@ class TagReadsViewSet(viewsets.ModelViewSet):
         		return TagReads.objects.filter(user_id = user.id)
 	return TagReads.objects.filter(public=True)
 
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-        if serializer.is_valid():
-    	   user=self.request.user.id
-           serializer.save(user_id=user)
-           return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
 
 class etagDataUploadView(APIView):
         permission_classes =(IsAuthenticated,)
