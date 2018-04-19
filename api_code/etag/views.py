@@ -40,15 +40,8 @@ class ReadersViewSet(viewsets.ModelViewSet):
         public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
 	return Readers.objects.filter(reader_id__in=public_tag_readers)
 
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-
-        if serializer.is_valid():
-            reader = Readers.objects.create(reader_id=serializer.data['reader_id'],description=serializer.data['description'],user_id=self.request.user.id)
-            reader.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
 
 class ReaderLocationViewSet(viewsets.ModelViewSet):
     """

@@ -17,14 +17,13 @@ class JSONSerializerField(serializers.Field):
         return value
 
 class ReaderSerializer(serializers.HyperlinkedModelSerializer):
+    user_id = serializers.Field(source='user_id')
     class Meta:
         model = Readers
-        fields = ('url','reader_id','description',)
+        fields = ('url','reader_id','description','user_id')
 
 class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
-    #source = LuSourceSerializer()
     reader_id = serializers.SlugRelatedField(slug_field='reader_id')
-    #location_id = serializers.RelatedField(source='location_id.location_id', read_only=True)
     location_id = serializers.SlugRelatedField(slug_field='location_id')
     class Meta:
         model = ReaderLocation
@@ -35,7 +34,6 @@ class ReaderLocationSerializer(serializers.HyperlinkedModelSerializer):
 class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     field_data=WritableJSONField() #serializers.DictField()
-    #animal_id = serializers.RelatedField(source='animal_id.animal_id', read_only=True)
     animal_id = serializers.SlugRelatedField(slug_field='animal_id')
     class Meta:
         model = TaggedAnimal
@@ -46,7 +44,6 @@ class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
 class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     user_id = serializers.Field(source='user_id')
-    #user_id = serializers.PrimaryKeyRelatedField(read_only=True,default=serializers.CurrentUserDefault())
     
     def validate_user(self): 
 	return self.context['request'].user.id
@@ -63,7 +60,6 @@ class TagReadsSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     tag_url = serializers.HyperlinkedIdentityField(view_name='tags-detail')
     field_data = WritableJSONField()
-    #user_id = serializers.PrimaryKeyRelatedField(read_only=True,default=serializers.CurrentUserDefault())
     user_id = serializers.Field(source='user_id')
 
     class Meta:
