@@ -84,7 +84,7 @@ class ReaderLocationFilter(django_filters.FilterSet):
 
 class TagOwnerFilter(django_filters.FilterSet):
     user = django_filters.NumberFilter()
-    tag_id = django_filters.CharFilter(lookup_type='icontains')
+    tag_id = django_filters.CharFilter(lookup_type='iexact')
     min_start_time = django_filters.DateTimeFilter(name='start_time',lookup_type='gte')
     max_start_time = django_filters.DateTimeFilter(name='start_time',lookup_type='lte')
     min_end_time = django_filters.DateTimeFilter(name='end_time',lookup_type='gte')

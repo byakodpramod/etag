@@ -36,23 +36,12 @@ class ReadersViewSet(viewsets.ModelViewSet):
 	if self.request.user.is_authenticated():
         	if not user:
             		return []
-		#private_tags = TagReads.objects.filter(public=False,user=user.id).values_list('tag_id')
-		private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
-        	return Readers.objects.filter(reader_id__in=private_tag_readers)
-	#public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+        	return Readers.objects.filter(user_id=user.id)
         public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
 	return Readers.objects.filter(reader_id__in=public_tag_readers)
 
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-
-        if serializer.is_valid():
-            reader = Readers.objects.create(reader_id=serializer.data['reader_id'],description=serializer.data['description'])
-            reader.user_id = self.request.user.id
-            reader.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
 
 class ReaderLocationViewSet(viewsets.ModelViewSet):
     """
@@ -73,10 +62,7 @@ class ReaderLocationViewSet(viewsets.ModelViewSet):
 	if self.request.user.is_authenticated():
         	if not user:
            		return []
-		#private_tags = Tags.objects.filter(public=False,user_id=user.id).values_list('tag_id')
-        	private_tag_readers = TagReads.objects.filter(public=False,user_id=user.id).values_list('reader_id')
-		return ReaderLocation.objects.filter(reader_id__in=private_tag_readers)
-	#public_tags = Tags.objects.filter(public=True).values_list('tag_id')
+		return ReaderLocation.objects.filter(reader_id__user_id=user.id)
 	public_tag_readers = TagReads.objects.filter(public=True).values_list('reader_id')
 	return ReaderLocation.objects.filter(reader_id__in=public_tag_readers)
 
@@ -99,7 +85,6 @@ class TaggedAnimalViewSet(viewsets.ModelViewSet):
 	if self.request.user.is_authenticated():
         	if not user:
             		return []
-		#user_tags = TagOwner.objects.filter(user=user.id).values_list('tag_id')
 		private_tags = TagReads.objects.filter(public=False,user_id=user.id).values_list('tag_id').distinct()
         	return TaggedAnimal.objects.filter(tag_id__in=private_tags)
 	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
@@ -108,7 +93,7 @@ class TaggedAnimalViewSet(viewsets.ModelViewSet):
 	
 class TagOwnerViewSet(viewsets.ModelViewSet):
     """
-    Tags table view set.
+    TagOwner table view set.
     """
     model = TagOwner
     queryset = TagOwner.objects.all()
@@ -119,7 +104,6 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
     filter_class = TagOwnerFilter
     #search_fields = ('tag_id',)
     ordering_fields = '__all__'
-	
     def get_queryset(self):
         user = self.request.user
 	if self.request.user.is_authenticated():
@@ -128,17 +112,10 @@ class TagOwnerViewSet(viewsets.ModelViewSet):
         	return TagOwner.objects.filter(user_id=user.id)
 	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
 	return TagOwner.objects.filter(tag_id__in=public_tags)
-		
-    def create(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-
-        if serializer.is_valid():
-            reader = Tags.objects.create(tag_id=serializer.data['tag_id'],start_time=serializer.data['start_time'],end_time=serializer.data['end_time'])
-            reader.user_id = self.request.user.id
-            reader.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-	
+    
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
+ 
 class TagReadsViewSet(viewsets.ModelViewSet):
     """
     TagReads table view set.
@@ -160,9 +137,10 @@ class TagReadsViewSet(viewsets.ModelViewSet):
             		return []
 		else :             
         		return TagReads.objects.filter(user_id = user.id)
-	#public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
 	return TagReads.objects.filter(public=True)
-	
+
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
 
 class etagDataUploadView(APIView):
         permission_classes =(IsAuthenticated,)
