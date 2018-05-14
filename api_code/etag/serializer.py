@@ -49,7 +49,6 @@ class TaggedAnimalSerializer(serializers.HyperlinkedModelSerializer):
 class TagOwnerSerializer(serializers.HyperlinkedModelSerializer):
     tag_id = serializers.SlugRelatedField(slug_field='tag_id')
     user_id = serializers.Field(source='user_id')
-    
     class Meta:
         model = TagOwner
         fields = ('url','tag_id','start_time','end_time','user_id',)
