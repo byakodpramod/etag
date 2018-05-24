@@ -22,6 +22,11 @@ class ReaderSerializer(serializers.HyperlinkedModelSerializer):
         model = Readers
         fields = ('url','reader_id','description','user_id')
 
+class LocationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Locations
+        fields = ('url','location_id','name','latitude','longitude','active')
+
 class TagsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tags
