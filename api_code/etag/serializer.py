@@ -16,6 +16,13 @@ class JSONSerializerField(serializers.Field):
     def to_representation(self, value):
         return value
 
+class AnimalsSerializer(serializers.HyperlinkedModelSerializer):
+    field_data=WritableJSONField()
+    animal_id = serializers.CharField(source='animal_id')
+    class Meta:
+        model = Animals
+        fields = ('url','animal_id','species','field_data')
+
 class ReaderSerializer(serializers.HyperlinkedModelSerializer):
     user_id = serializers.Field(source='user_id')
     class Meta:
