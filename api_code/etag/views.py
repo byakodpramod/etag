@@ -217,6 +217,36 @@ class TagReadsViewSet(viewsets.ModelViewSet):
     def pre_save(self, obj):
         obj.user_id = self.request.user.id
 
+class AnimalHitReaderViewSet(viewsets.ModelViewSet):
+    """
+    RFID AnimalHitReader table view set.
+    """
+    model = AnimalHitReader
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    serializer_class = AnimalHitReaderSerializer
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    filter_class = AnimalHitReaderFilter
+    #search_fields = ('user', 'description',)
+    ordering_fields = '__all__'
+
+
+class UploadLocationViewSet(viewsets.ModelViewSet):
+    """
+    RFID UploadLocation table view set.
+    """
+    model = UploadLocation
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    serializer_class = UploadLocationSerializer
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer,JSONPRenderer,XMLRenderer,YAMLRenderer)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
+    filter_class = UploadLocationFilter
+    #search_fields = ('user', 'description',)
+    ordering_fields = '__all__'
+
+    def pre_save(self, obj):
+        obj.user_id = self.request.user.id
+
 class etagDataUploadView(APIView):
         permission_classes =(IsAuthenticated,)
         #parser_classes = (MultiPartParser, FormParser,FileUploadParser,)

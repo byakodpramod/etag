@@ -15,6 +15,8 @@ router.register('tags', TagsViewSet)
 router.register('tag_owners', TagOwnerViewSet)
 router.register('tag_reads', TagReadsViewSet)
 router.register('tag_animal', TaggedAnimalViewSet)
+router.register('upload_location', UploadLocationViewSet)
+router.register('animal_hit_reader', AnimalHitReaderViewSet)
 #router.register('lusource', LuSourceViewSet)
 
 urlpatterns = patterns('',

@@ -38,6 +38,8 @@ class APIRoot(APIView):
                                               'Tag Owners':reverse('tagowner-list',request=request),
                                               'Tag Read':reverse('tagreads-list',request=request),
                                               'Tag Animal':reverse('taggedanimal-list',request=request),
+                                              'Animal Hit Reader':reverse('animalhitreader-list',request=request),
+                                              'Upload Location':reverse('uploadlocation-list',request=request),
                                              },
               'Mongo':reverse('data-list',request=request)
                          },
