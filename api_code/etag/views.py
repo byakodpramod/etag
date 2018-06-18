@@ -244,6 +244,15 @@ class UploadLocationViewSet(viewsets.ModelViewSet):
     #search_fields = ('user', 'description',)
     ordering_fields = '__all__'
 
+    def get_queryset(self):
+        user = self.request.user
+        if self.request.user.is_authenticated():
+                if not user:
+                        return []
+                else :
+                        return UploadLocation.objects.filter(user_id = user.id)
+        return UploadLocation.objects.all()
+
     def pre_save(self, obj):
         obj.user_id = self.request.user.id
 
