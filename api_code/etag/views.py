@@ -230,6 +230,17 @@ class AnimalHitReaderViewSet(viewsets.ModelViewSet):
     #search_fields = ('user', 'description',)
     ordering_fields = '__all__'
 
+    def get_queryset(self):
+        user = self.request.user
+        if self.request.user.is_authenticated():
+                if not user:
+                        return []
+                else :
+			private_tags = TagReads.objects.filter(public=False,user_id=user.id).values_list('tag_id').distinct()
+                        return AnimalHitReader.objects.filter(tag_id__in=private_tags)
+	public_tags = TagReads.objects.filter(public=True).values_list('tag_id').distinct()
+        return AnimalHitReader.objects.filter(tag_id__in=public_tags)
+
 
 class UploadLocationViewSet(viewsets.ModelViewSet):
     """
