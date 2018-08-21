@@ -74,7 +74,7 @@ docker run -d --name etag_celery \
 echo "********* memcached   ********************"
 docker run --name etag_memcache -d memcached
 
-sleep 10
+sleep 15
 
 #API
 echo "*********  API       *********************"
