@@ -1,0 +1,100 @@
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootstrap Template">
+    <meta name="Mark Stacy" content="OU IT Informatics">
+    <meta name="Tyler Pearson" content="OU Library Informatics">
+    <link rel="stylesheet" href="bower_components/boostrap_style/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+<body style="padding:5px;">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Electronic Transponder Analysis Gateway Data Portal</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a id="user" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a id="aprofile" href="#">User Profile</a></li>
+                <li><a id="alogout" href="#">Log out</a></li>
+                <!--<li class="divider"></li>-->
+              </ul>
+            </li>
+          </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div role="tabpanel" class="tabbable" >
+    <ul id='myTab' class="nav nav-tabs  " role="tablist">
+        <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab" >Description</a></li>
+
+        <li role="presentation" id="viz_tab"><a href="#viz" aria-controls="viz" role="tab" data-toggle="tab" >Visualization</a></li>
+        <li role="presentation" id="custom_tab"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" >My ETAG Data</a></li>
+    <!--    <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Readers</a></li>
+        <li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">Tags</a></li>
+        <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Data Upload</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">User Profile</a></li> -->
+    </ul>
+    <div id="myTabContent" class="tab-content" style="margin-bottom:0px">
+        <div role="tabpanel" class="tab-pane fade in active" id="description">
+            <img src="ETAGlogo.svg" alt="ETAG logo" style="height: 150px;"> 
+	    <h2>Electronic Transponder Analysis Gateway</h2>
+            <p>The Electronic Transponder Analysis Gateway (ETAG) is a database and software system to provide professional data management and versatile data dissemination to the growing community of researchers who use Radio Frequency Identification (RFID) technology to advance biological inquiries in fields like animal behavior, ecological physiology, and community ecology. ETAG is an infrastructure based on open-source tools, allowing scientists to collect, validate, visualize, analyze, and share data in near real-time. ETAG facilitates new capacities both for producing novel science and for sharing data with fellow researchers and the general public.  Our system will free up time from the management of data collection, analysis, and curation (currently done by hand), leaving researchers with more time for science.</p>
+
+	    <h3>About RFID</h3>
+	    <p>RFID is a mature and ubiquitous technology, familiar to people in the form of electronic tool-booths or as 'microchip' tags implanted in cats and dogs. RFID entails short-range wireless communication between small transponder tags and readers, and it can facilitate tracking of individual items or animals that are equipped with a tag. A community of researchers has emerged that employs RFID to track individual birds, mammals, fish, reptiles, and even insects in a wide range of field and laboratory research endeavors.</p>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="viz">
+             <div id="map"></div>
+	     <!--<script src="https://head.ouetag.org/api/etag/tag_reads/?format=jsonp"></script>-->
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="custom">
+    </div>
+</div>
+<hr>
+<footer>
+    <p>&copy; Copyright</p>
+</footer>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">Task Result</h3>
+      </div>
+      <div class="modal-body">
+        <pre id="myModalbody"></pre>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Model -->
+</body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/handlebars/handlebars.runtime.min.js"></script>
+<script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+<script src="bower_components/leaflet/dist/leaflet.js"></script>
+<script src="api.js"></script>
+<script src="templates.js"></script>
+
+</html>

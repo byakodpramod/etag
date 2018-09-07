@@ -1,0 +1,182 @@
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootstrap Template">
+    <meta name="Mark Stacy" content="OU IT Informatics">
+    <link rel="stylesheet" href="bower_components/boostrap_style/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding:5px;">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Electronic Transponder Analysis Gateway Data Portal</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a id="user" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a id="aprofile" href="#">User Profile</a></li>
+                <li><a id="alogout" href="#">Log out</a></li>
+                <!--<li class="divider"></li>-->
+              </ul>
+            </li>
+          </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div role="tabpanel" class="tabbable" >
+    <ul id='myTab' class="nav nav-tabs  " role="tablist">
+        <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab" onclick="hide_tab();">Description</a></li>
+        
+        <li role="presentation"><a href="#viz" aria-controls="viz" role="tab" data-toggle="tab" onclick="hide_tab();">Visualization</a></li>
+        <li role="presentation"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" onclick="show_tab();">Custom</a></li>  
+    <!--    <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Readers</a></li>
+        <li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">Tags</a></li>
+        <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Data Upload</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">User Profile</a></li> -->
+    </ul>
+    <div id="myTabContent" class="tab-content" style="margin-bottom:0px">
+        <div role="tabpanel" class="tab-pane fade in active" id="description">
+            <h2>Electronic Transponder Analysis Gateway</h2>
+            <p>The Electronic Transponder Analysis Gateway (ETAG) is a database and software system that will provide professional
+            data management and versatile data dissemination to a growing community of researchers who use Radio Frequency Identification (RFID)
+            technology to advance biological inquiries in fields like animal behavior, ecological physiology, and community ecology. RFID entails
+            short-range wireless communication between small transponder tags and readers, and it can facilitate tracking of individual items or
+            animals that are equipped with a tag. RFID is a mature and ubiquitous technology, familiar to people in the form of electronic tool-booths
+            or as 'microchip' tags implanted in cats and dogs. A community of researchers has emerged that employs RFID to track individual birds, mammals,
+            fish, reptiles, and even insects in a wide range of field and laboratory research endeavors. For the majority of these projects, data collection,
+            analysis, and curation are currently done by hand, which requires individual investigators to spend considerable time on data management rather
+            than science. ETAG will transform the practices of its user community, by creating an infrastructure based on open-source tools that will
+            allow scientist to collect, validate, visualize, analyze, and share data in near real-time. As a result, researchers will have new capacities
+            both for producing novel science and for sharing their work with their peers and the general public.</p>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="viz">
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="custom">
+            <ul id='myTab1' class="nav nav-tabs  " role="tablist">	
+			<li role="presentation" class="tab-pane active in"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab" onclick="show_edit();">Edit</a></li>
+            <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab" onclick="hide_edit1();">Task History</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="hide_edit();">User Profile</a></li>
+		</ul>
+        </div>
+         <div id="tabContent1" class="tab-content" style="margin-bottom:0px">
+			
+			<div role="tabpanel" class="tab-panel fade" id="edit">
+			
+			
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-2">
+							<!-- Sidebar -->
+        <div id="sidebar sidebar-dark" id="my-sidebar" class="tabbable">
+            <ul class="nav nav-tabs sidebar-nav"  role="tablist" id='myTab2'>
+               
+                
+                    <li role="presentation" class="tab-panel active in"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Readers</a></li> <br> <br>
+					<li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">Tags</a></li><br> <br>
+					<li role="presentation"><a href="#file_upload" aria-controls="tasks" role="tab" data-toggle="tab">File Upload</a></li><br> <br>
+					
+               
+                
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+						</div>
+						<div class="col-xs-10">
+							<div id="my_Content2" class="tab-content" style="margin-bottom:0px">
+							 <div role="tabpanel" class="tab-pane fade active in " id="home">
+							 
+							 </div>
+							 <div role="tabpanel" class="tab-pane fade" id="tags">
+
+							</div>
+							
+							<div role="tabpanel" class="tab-pane fade" id="file_upload">
+
+							</div>
+							
+							
+							 
+							 
+							
+							</div>
+							
+						</div>
+					</div>
+				</div>
+        </div>
+			<div role="tabpanel" class="tab-pane fade" id="profile">
+			
+
+			</div>
+       <!-- <div role="tabpanel" class="tab-pane fade" id="home">
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="tags">
+        </div>   -->
+        <div role="tabpanel" class="tab-pane fade" id="tasks">
+            <h2>Task History</h2>
+            <h4 id="task_count"></h4>
+            <table class="table table-striped table-bordered table-condensed table-hover" id='resulttable'>
+              <tr>
+                  <th>Task Name</th>
+                  <th>Timestamp</th>
+                  <th>Metadata Tags</th>
+                  <!--<th>Result</th>-->
+              </tr>
+            <tbody id='result_tbody'>
+              </tbody>
+            </table>
+            <nav>
+            <ul class="pager">
+                <li id="li_prevlink" class="disabled"><a id="prevlink" href="#"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                <li id="li_nextlink" ><a id="nextlink" href="#">Next <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="profile">
+
+        </div>
+    </div>
+</div>
+<hr>
+<footer>
+    <p>&copy; Copyright</p>
+</footer>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">Task Result</h3>
+      </div>
+      <div class="modal-body">
+        <pre id="myModalbody"></pre>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Model -->
+</body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/handlebars/handlebars.runtime.min.js"></script>
+<script src="api.js"></script>
+<script src="templates.js"></script>
+</html>

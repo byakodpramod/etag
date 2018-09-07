@@ -1,0 +1,16 @@
+<div> <!--beginning div-->
+  <div class = "tab-container"> <!--tab container div-->
+    <div class = "dropdown-reader"> <!--dropdown div-->
+      <select class="form-control" id="readers-container" size = "10">
+        {{#each readers}}
+            <option>{{this.reader_id}}</option>
+        {{/each}}
+      </select>
+    </div> <!--end of dropdown div-->
+
+    <div id="readers-form" class="form-container"> <!--form div-->
+    </div> <!--end of form div-->
+    <div id="readers-table" class = "table-container"> <!--table div-->
+    </div> <!--end of table div-->
+  </div> <!--end of container div-->
+</div> <!--ending div-->

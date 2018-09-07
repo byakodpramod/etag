@@ -1,0 +1,54 @@
+<div id = "tag-container">
+  <table id="grid-basic" name="myTable" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th data-column-id="name">Name</th>
+        <th data-column-id="description">Description</th>
+        <th data-column-id="start_time">Start Timestamp</th>
+        <th data-column-id="end_time">End Timestamp</th>
+        <th data-column-id="longitude">Edit <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_add2" onclick = "tag_animal_add(); return false;" id="#myModal_add2">+</button></th>
+      </tr>
+    </thead>
+    <tbody id ="animalRow">
+      {{#each results}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.start_timestamp}}</td>
+        <td>{{this.end_timestamp}}</td>
+        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal3" onclick = "tag_animal_change('{{this.url}}'); return false;" id="#myModal3">Edit</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+
+  <div class="modal fade" id="modal3" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Edit Animal</h4>
+        </div>
+        <div class="modal-body">
+          <div id="modal-tag-animal"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="modal_add2" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Add Animal</h4>
+        </div>
+        <div class="modal-body">
+          <div id="modal-animal"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</div>

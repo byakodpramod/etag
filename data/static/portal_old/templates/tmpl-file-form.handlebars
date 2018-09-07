@@ -1,0 +1,21 @@
+<form id="submit_file" action="/api/etag/file-upload/" method="post" target=" " enctype="multipart/form-data">
+
+        <div class="form-group" style="display:none">
+          <label class="control-label" for="url">URL</label>
+          <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="reader_id">Tag ID</label>
+          <input type="text" class="form-control" name="tag_id" id="tag_id" value="{{ tag_id }}">
+        </div>
+			<div class="form-group">
+          <label class="control-label" for="file">File Upload</label>
+				<input type="file" name="upload_file" id="upload_file">
+		</div>
+        <div class="form-group">
+          <div class="sumbit1">
+            <button id="submit_file_button" >Submit</button>
+          </div>
+        </div>
+</form>

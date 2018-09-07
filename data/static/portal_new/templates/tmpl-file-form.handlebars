@@ -1,0 +1,20 @@
+<form id="submit_file" action="/api/etag/file-upload/" method="POST"  enctype="multipart/form-data">
+      <div style="display:none">
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrftoken }}"/>
+      </div>
+      <div class="form-group">
+          <label class="control-label" for="reader_id">Reader ID</label>
+          <input type="text" class="form-control" name="reader_id" id="tag_id" value="{{ reader_id }}">
+      </div>
+      <div class="form-group">
+          <label class="control-label" for="file">File Upload</label>
+	  <input type="file" name="upload_file" id="upload_file">
+      </div>
+      <div class="form-group">
+          <div class="sumbit1">
+            <button id="submit_file_button" >Submit</button>
+          </div>
+      </div>
+</form>
+<progress class="progress-bar progress-bar-success"/>
+<div id="upload_result"></div>

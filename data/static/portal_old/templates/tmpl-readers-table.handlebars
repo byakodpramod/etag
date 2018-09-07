@@ -1,0 +1,54 @@
+<div id = "grid-container">
+  <table id="grid-basic" name="myTable" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th data-column-id="start_time">Start Timestamp</th>
+        <th data-column-id="end_time">End Timestamp</th>
+        <th data-column-id="latitude">Latitude</th>
+        <th data-column-id="longitude">Longitude</th>
+        <th data-column-id="longitude">Edit <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_add" onclick = "reader_add(); return false;" id="#myModal3">+</button></th>
+      </tr>
+    </thead>
+    <tbody id ="locationRow">
+      {{#each results}}
+      <tr>
+        <td>{{this.start_timestamp}}</td>
+        <td>{{this.end_timestamp}}</td>
+        <td>{{this.latitude}}</td>
+        <td>{{this.longitude}}</td>
+        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal2" onclick = "lat_long_change('{{this.url}}'); return false;" id="#myModal2">Edit</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+
+  <div class="modal fade" id="modal2" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Edit Longitude/Latitude</h4>
+        </div>
+        <div class="modal-body">
+          <div id="modal-lat-long"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="modal_add" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Add Longitude/Latitude</h4>
+        </div>
+        <div class="modal-body">
+          <div id="modal-location"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</div>

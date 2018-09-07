@@ -1,0 +1,45 @@
+<form id="submit_animal" onsubmit = "form_submit_insert1('submit_animal'); return false;">
+
+        <div class="form-group" style="display:none">
+          <label class="control-label" for="url">URL</label>
+          <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="tag">Tag</label>
+          <input type="text" class="form-control" name="tag" id="tag" value="{{ tag }}" readonly>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="name">Name</label>
+          <input type="text" class="form-control" name="name" id="name" value="{{ name }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description" value="{{ description }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="start_timestamp">Start Timestamp</label>
+          <input type="text" class="form-control" name="start_timestamp" id="start_timestamp" value="{{ start_timestamp }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="end_timestamp">End Timestamp</label>
+          <input type="text" class="form-control" name="end_timestamp" id="end_timestamp" value="{{ end_timestamp }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="field_data">Field Data</label>
+          <input type="text" class="form-control" name="field_data" id="field_data" value="{{ field_data }}">
+            
+                <label for="field_data">Note:Field Data should be in json format. <a  target="_blank" href="https://www.w3schools.com/js/js_json_syntax.asp">Json Syntax</a> </label>  
+        </div>
+
+        <div class="form-group">
+          <div class="sumbit">
+            <button class="btn btn-primary" id="submitButton" value="PUT">Submit</button>
+          </div>
+        </div>
+</form>

@@ -1,0 +1,28 @@
+<form id="submit_tags" onclick = "form_submit('submit_tags'); return false;">
+
+        <div class="form-group" style="display:none">
+          <label class="control-label" for="url">URL</label>
+          <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="reader_id">Tag ID</label>
+          <input type="text" class="form-control" name="tag_id" id="tag_id" value="{{ tag_id }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="name">Name</label>
+          <input type="text" class="form-control" name="name" id="name" value="{{ name }}">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description" value="{{ description }}">
+        </div>
+
+        <div class="form-group">
+          <div class="sumbit">
+            <button class="btn btn-primary" id="submitButton" value="PUT">Submit</button>
+          </div>
+        </div>
+</form>

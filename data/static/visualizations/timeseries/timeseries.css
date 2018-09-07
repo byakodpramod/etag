@@ -1,0 +1,36 @@
+.axis {
+  font: 10px sans-serif;
+}
+
+#focusText {
+  font: 30px sans-serif;
+  opacity: 0.5;
+}
+
+.contextTimestamp
+{
+  font: 12px sans-serif;
+}
+
+#timeseries_slider .extent {
+  visibility: visible !important;
+  fill: red;
+  opacity: 0.5;
+  stroke: black;
+  stroke-width: 2;
+}
+
+#timeseries_slider .resize rect {
+  visibility: hidden;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.time-line.contextG {
+  opacity: 0.6;
+}
