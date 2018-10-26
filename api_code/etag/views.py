@@ -17,7 +17,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 import os, requests,json
 #import DjangoModelPermissionsOrAnonReadOnly
-
+import uuid
 
 class ReadersViewSet(viewsets.ModelViewSet):
     """
@@ -261,6 +261,7 @@ class fileDataUploadView(APIView):
     #parser_classes = (MultiPartParser, FormParser,FileUploadParser,)
     parser_classes = (FileUploadParser,)
     renderer_classes = (JSONRenderer,)
+    #r=requests.post("http://localhost:8080/queue/run/etagq.tasks.tasks.etagDataUpload/.json",data=json.dumps(payload),headers=headers)
 
     def post(self, request, uploadDirectory="/data/file_upload",format=None):
         #check if uploadDirectory exists
@@ -290,11 +291,11 @@ class fileDataUploadView(APIView):
 
     def handle_file_upload(self,f,filename):
         if f.multiple_chunks():
-            with open(filename, 'wb+') as temp_file:
+           with open(filename, 'wb+') as temp_file:
                 for chunk in f.chunks():
                     temp_file.write(chunk)
         else:
-            with open(filename, 'wb+') as temp_file:
+           with open(filename, 'wb+') as temp_file:
                 temp_file.write(f.read())
 
     def callback_task(self,request,local_file):

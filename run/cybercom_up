@@ -60,6 +60,7 @@ echo "********** Celery Async Queue ************"
 docker run -d --name etag_celery \
   --link etag_rabbitmq:cybercom_rabbitmq \
   --link etag_mongo:cybercom_mongo \
+  --link etag_postgres:cybercom_postgres \
   -v /Users/byakodpramod/ga_dir/etag/config/celery/code:/code:z \
   -v /Users/byakodpramod/ga_dir/etag/log:/log:z \
   -v /Users/byakodpramod/ga_dir/etag/data:/data:z \
@@ -82,7 +83,7 @@ docker run -d --name etag_api \
   --link etag_memcache:cybercom_memcache \
   --link etag_mongo:cybercom_mongo \
   --link etag_rabbitmq:cybercom_rabbitmq \
-  --link etag_postgres:postgres \
+  --link etag_postgres:cybercom_postgres \
   -p 8080:8080 \
   -v /Users/byakodpramod/ga_dir/etag/config/ssl/backend:/ssl:z \
   -v /Users/byakodpramod/ga_dir/etag/api_code:/usr/src/app:z \
